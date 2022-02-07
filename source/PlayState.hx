@@ -53,6 +53,7 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float)
 	{
+		super.update(elapsed);
 		if (OfficeSprite != null)
 		{
 			if (FlxG.mouse.screenX > ((FlxG.width / 2) - OfficeScroll))
@@ -72,6 +73,5 @@ class PlayState extends FlxState
 				FlxG.camera.scroll.x = -208;
 			}
 		}
-		super.update(elapsed);
 	}
 }
