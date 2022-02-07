@@ -7,6 +7,6 @@ class FolderPaths
 {
 	public static function GetImagePath(assetName:String, path:String = "main")
 	{
-		return FlxSprite.loadGraphic("assets/images/" + path + "/" + assetName + ".png");
+		return "assets/images/" + path + "/" + assetName + ".png";
 	}
 }
