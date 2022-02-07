@@ -15,6 +15,8 @@ class PlayState extends FlxState
 
 	public var HudCamera:FlxCamera;
 
+	public var CamsCamera:FlxCamera;
+
 	static inline var OfficeScroll:Int = 100;
 
 	public function AddHudElement(thing:FlxSprite)
@@ -29,6 +31,7 @@ class PlayState extends FlxState
 		// Create the office cameras
 		OfficeCamera = new FlxCamera(0, 0, 1280, 720, 1);
 		HudCamera = new FlxCamera(0, 0, 1280, 720, 1);
+		CamsCamera = new FlxCamera(0, 0, 1280, 720, 1);
 		HudCamera.bgColor.alpha = 0;
 		FlxG.cameras.reset(OfficeCamera);
 		FlxG.cameras.add(HudCamera);
