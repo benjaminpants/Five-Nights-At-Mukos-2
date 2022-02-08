@@ -95,7 +95,7 @@ class PlayState extends FlxState
 		ElapsedTime += elapsed;
 		super.update(elapsed);
 		CamsCamera.scroll.x = Math.sin(ElapsedTime) * 208;
-		if (OfficeSprite != null)
+		if (!CamsUp)
 		{
 			if (FlxG.mouse.screenX > ((FlxG.width / 2) - OfficeScroll))
 			{
@@ -105,16 +105,6 @@ class PlayState extends FlxState
 			{
 				FlxG.camera.scroll.x -= 4;
 			}
-			if (CameraButton.pixelsOverlapPoint(FlxG.mouse.getScreenPosition(), 0x01, HudCamera) && CanOpenCams) // figure out a better method.
-			{
-				CanOpenCams = false;
-				SetCameraState(!CamsUp);
-				CameraButton.flipY = !CamsUp;
-			}
-			if (!CameraButton.pixelsOverlapPoint(FlxG.mouse.getScreenPosition(), 0x01, HudCamera) && !CanOpenCams)
-			{
-				CanOpenCams = true;
-			}
 			if (FlxG.camera.scroll.x >= 208)
 			{
 				FlxG.camera.scroll.x = 208;
@@ -123,6 +113,17 @@ class PlayState extends FlxState
 			{
 				FlxG.camera.scroll.x = -208;
 			}
+		}
+		if (CameraButton.pixelsOverlapPoint(FlxG.mouse.getScreenPosition(), 0x01, HudCamera)
+			&& CanOpenCams) // figure out a better to do hover detection
+		{
+			CanOpenCams = false;
+			SetCameraState(!CamsUp);
+			CameraButton.flipY = !CamsUp;
+		}
+		if (!CameraButton.pixelsOverlapPoint(FlxG.mouse.getScreenPosition(), 0x01, HudCamera) && !CanOpenCams)
+		{
+			CanOpenCams = true;
 		}
 	}
 }
