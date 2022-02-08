@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.ui.FlxButton;
 import flixel.FlxState;
+import flixel.input.mouse.FlxMouseEventManager;
 
 class TitleState extends FlxState
 {
@@ -27,6 +28,8 @@ class TitleState extends FlxState
 		playButton.screenCenter();
 		playButton.y += 100;
  		add(playButton);
+
+		FlxG.plugins.add(new FlxMouseEventManager());
 	}
 
 	override public function update(elapsed:Float)

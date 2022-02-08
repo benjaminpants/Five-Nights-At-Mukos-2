@@ -21,6 +21,8 @@ class PlayState extends FlxState
 
 	public var CamsUp:Bool = false;
 
+	public var CurrentCamera:Int = 0;
+
 	public var ElapsedTime:Float = 0;
 
 	public var CanOpenCams:Bool = true;
@@ -48,6 +50,18 @@ class PlayState extends FlxState
 			curcamesprite.x += i * (1702 + 10);
 			curcamesprite.cameras = [CamsCamera];
 			add(curcamesprite);
+
+			i++;
+		}
+		i = 0;
+		for (camlocal in CamLocations) 
+		{
+			var cambut:CamButton = new CamButton();
+			cambut.Initialize(i);
+			cambut.screenCenter();
+			cambut.y += 100;
+			cambut.x += (i - (CamLocations.length - 1)) * (cambut.width + 10);
+			add(cambut);
 			i++;
 		}
 	}
@@ -56,6 +70,11 @@ class PlayState extends FlxState
 	{
 		CamsUp = setto;
 		CamsCamera.visible = setto;
+	}
+
+	public function SwitchCamera(cam:Int)
+	{
+		CurrentCamera = cam;
 	}
 
 	override public function create()
@@ -88,13 +107,16 @@ class PlayState extends FlxState
 		CameraButton.y = FlxG.height - (CameraButton.height + 10);
 		CameraButton.flipY = true;
 		AddHudElement(CameraButton);
+
+
+
 	}
 
 	override public function update(elapsed:Float)
 	{
 		ElapsedTime += elapsed;
 		super.update(elapsed);
-		CamsCamera.scroll.x = Math.sin(ElapsedTime) * 208;
+		CamsCamera.scroll.x = (CurrentCamera * (1702 + 10)) + (Math.sin(ElapsedTime) * 208);
 		if (!CamsUp)
 		{
 			if (FlxG.mouse.screenX > ((FlxG.width / 2) - OfficeScroll))
@@ -114,8 +136,7 @@ class PlayState extends FlxState
 				FlxG.camera.scroll.x = -208;
 			}
 		}
-		if (CameraButton.pixelsOverlapPoint(FlxG.mouse.getScreenPosition(), 0x01, HudCamera)
-			&& CanOpenCams) // figure out a better to do hover detection
+		if (CameraButton.pixelsOverlapPoint(FlxG.mouse.getScreenPosition(), 0x01, HudCamera) && CanOpenCams) // figure out a better to do hover detection
 		{
 			CanOpenCams = false;
 			SetCameraState(!CamsUp);
