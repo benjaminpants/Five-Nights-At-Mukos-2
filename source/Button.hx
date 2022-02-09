@@ -9,23 +9,23 @@ class Button extends FlxSprite //THIS IS AWFUL
 {
 
 
-	public static function PressButton(but:Button)
-	{
-		if (but.cameras[0].visible)
-		{
-			but.OnClicked();
+    public static function PressButton(but:Button)
+    {
+        if (but.cameras[0].visible)
+        {
+          but.OnClicked();
         }
-	}
+    }
 
 
 
     public function InitButton()
     {
-		FlxMouseEventManager.add(this, PressButton);
+		  FlxMouseEventManager.add(this, PressButton);
     }
 
     public function OnClicked()
     {
-        trace("I've been clicked!");
+        
     }
 }
