@@ -109,7 +109,6 @@ class PlayState extends FlxState
 		AddHudElement(CameraButton);
 
 
-
 	}
 
 	override public function update(elapsed:Float)
