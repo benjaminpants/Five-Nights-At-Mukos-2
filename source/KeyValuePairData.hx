@@ -23,6 +23,41 @@ class KeyValuePairData
 		return list;
 	}
 
+    //generate a string formatted like the following when given a map:
+    //key:value
+    //key2:value2
+    //key3:value3
+    //...
+    static function generateStringFromMap(map:Map<String,String>):String
+    {
+        var str:String = "";
+
+        for (key in map)
+        {
+            str += key + ":" + map[key] + "\n";
+        }
+
+        return str;
+    }
+
+    //remove duplicate lines from a given string
+    static function removeDuplicateLines(str:String):String
+    {
+        var lines:Array<String> = str.split('\n');
+        var uniqueLines:Array<String> = new Array<String>();
+
+		for (i in 0...lines.length)
+        {
+            if (uniqueLines.indexOf(lines[i]) == -1)
+            {
+                uniqueLines.push(lines[i]);
+            }
+        }
+
+        return uniqueLines.join('\n');
+    }
+
+
     public static function MapFromFile(path)
     {
 		var list:Array<String> = readText(path);

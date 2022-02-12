@@ -28,6 +28,7 @@ class TitleState extends FlxState
 		playButton.screenCenter();
 		playButton.y += 100;
  		add(playButton);
+		
 
 		FlxG.plugins.add(new FlxMouseEventManager());
 	}
